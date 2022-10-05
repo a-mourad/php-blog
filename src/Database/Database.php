@@ -19,7 +19,7 @@ class Database
 
     private function getConnectionLink(): string
     {
-        return "mysql:host=mysql;dbname={$_ENV['MYSQL_DATABASE']}";
+        return "mysql:host={$_ENV['MYSQL_HOST']};dbname={$_ENV['MYSQL_DATABASE']}";
     }
 
 
