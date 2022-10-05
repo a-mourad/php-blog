@@ -6,8 +6,8 @@ const APP_DIRECTORY = __DIR__ . '/../';
 $dotenv = Dotenv\Dotenv::createImmutable(APP_DIRECTORY);
 $dotenv->load();
 
-return new App(
-    router: new Router($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']),
-    view: new View(),
-    model: new Model()
+return new \MouradA\Blog\App(
+    router: new \MouradA\Blog\Router($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']),
+    view: new \MouradA\Blog\View(),
+    model: new \MouradA\Blog\Model()
 );
