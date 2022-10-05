@@ -19,13 +19,12 @@ class App
     {
 
         try {
-            //[$controller, $action,$method,$params] = $this->router->resolveRoute();
-
-
-            $response = $this->handleController('\MouradA\Blog\Controllers\ArticleController', 'getShow', 'get', '');
+            [$controller, $action,$method,$params] = $this->router->resolveRoute();
+            $response = $this->handleController($controller, $action, $method, $params);
 
             echo $response;
         } catch ( \Exception $exception) {
+
         }
 
 
@@ -35,7 +34,7 @@ class App
     {
 
         $class = new $controller($this);
-        return $class->$action($params,$_POST);
+        return $class->$action($params,$_REQUEST);
 
     }
 
@@ -44,9 +43,9 @@ class App
         return $this->database;
     }
 
-    public function getView()
+    public function view(string $viewName, array $data=[])
     {
-        return $this->view;
+        return $this->view->render($viewName, $data);
     }
 
 }

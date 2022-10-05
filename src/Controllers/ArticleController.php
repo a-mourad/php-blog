@@ -22,7 +22,10 @@ class ArticleController extends Controller
 
     public function getShow($params = [])
     {
-        echo 'test';
+        $data=[];
+
+
+        return $this->app->view('articles', $data);
     }
 
     public function deleteDestroy()

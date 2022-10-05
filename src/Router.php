@@ -21,9 +21,9 @@ class Router
     public function resolveRoute()
     {
         [$controller, $func, $params] = RouteParser::parse($this->url);
+        $parse = ControllerHelper::check(name: $controller, func: $func ,method: $this->method);
 
-        $resolve = ControllerHelper::parse(name: $controller, func: $func ,method: $this->method);
-        if (!$resolve){
+        if (!$parse){
             throw new \Exception('Route not found');
         }
         return ControllerHelper::resolve(name: $controller, func: $func ,method: $this->method,params:$params);

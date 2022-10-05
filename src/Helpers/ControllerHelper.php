@@ -4,16 +4,16 @@ namespace MouradA\Blog\Helpers;
 
 class ControllerHelper
 {
-    public static function parse(string $name,string $func, string $method )
+    public static function check(string $name,string $func, string $method )
     {
-        $controller = 'MouradA\Blog\Controllers\\' . ucfirst($name) . 'Controller';
+        $controller = 'MouradA\\Blog\Controllers\\' . ucfirst($name) . 'Controller';
         if (!class_exists($controller)) {
             return false;
         }
 
-        $class =  new $controller();
-        $func = ucfirst(strtolower($method)) . ucfirst($func);
-        if (!method_exists($class, $func)) {
+        $func =  strtolower($method). ucfirst($func);
+
+        if (!method_exists($controller, $func)) {
             return false;
         }
 
@@ -22,17 +22,13 @@ class ControllerHelper
 
     public static function resolve(string $name, string $func, string $method, $params)
     {
+        if (!self::parse($name,$func,$method)){
+
+        }
         $controller = 'MouradA\Blog\Controllers\\' . ucfirst($name) . 'Controller';
-        if (!class_exists($controller)) {
-            return false;
-        }
 
-        $class =  new $controller();
-        $func = ucfirst(strtolower($method)) . ucfirst($func);
-        if (!method_exists($class, $func)) {
-            return false;
-        }
+        $func =  strtolower($method) . ucfirst($func);
 
-        return [$class, $func,$method, $params];
+        return [$controller, $func,$method, $params];
     }
 }
