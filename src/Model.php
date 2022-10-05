@@ -3,7 +3,9 @@ declare(strict_types=1);
 
 namespace MouradA\Blog;
 
-class Model
+use MouradA\Blog\Database\Database;
+
+class Model extends Database
 {
 
 }

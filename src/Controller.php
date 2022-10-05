@@ -4,5 +4,7 @@ namespace MouradA\Blog;
 
 class Controller
 {
-
+    public function __construct()
+    {
+    }
 }

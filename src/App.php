@@ -14,17 +14,22 @@ class App
     )
     {}
 
-    public function run()
+    public function run(): void
     {
         try {
-            $parsedRoute = RouteParser::parse($this->router->getUrl());
-            $response = $this->executeController($parsedRoute);
-            return  new Response($response);
-        }catch (\Exception $exception ){
-            //
+            [$controller, $action,$method,$params] = $this->router->resolveRoute();
+            $response = $this->handleController($controller, $action);
+
+            echo $response;
+        } catch ( \Exception $exception) {
         }
 
 
+    }
+
+    private function handleController(string $controller, string $action,$params)
+    {
+        return call_user_func_array([$controller, $action], [$params, $_POST]);
     }
 
 }
