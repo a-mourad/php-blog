@@ -12,7 +12,7 @@ class RouteParser
         $segments = explode('/', $url);
         $controller = $segments[1] ?? null;
         $func = $segments[2] ?? null;
-        $params = array_slice($segments, 3);
+        $params = $segments[3] ?? null;
 
 
         return [$controller, $func, $params];

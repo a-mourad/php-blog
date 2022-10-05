@@ -22,13 +22,11 @@ class ControllerHelper
 
     public static function resolve(string $name, string $func, string $method, $params)
     {
-        if (!self::parse($name,$func,$method)){
 
-        }
         $controller = 'MouradA\Blog\Controllers\\' . ucfirst($name) . 'Controller';
 
         $func =  strtolower($method) . ucfirst($func);
 
-        return [$controller, $func,$method, $params];
+        return [$controller, $func, $params];
     }
 }

@@ -28,5 +28,9 @@ class Router
         }
         return ControllerHelper::resolve(name: $controller, func: $func ,method: $this->method,params:$params);
     }
+    public function getMethod()
+    {
+        return $this->method;
+    }
 
 }

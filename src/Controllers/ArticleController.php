@@ -5,6 +5,7 @@ use MouradA\Blog\App;
 use MouradA\Blog\Controller;
 use MouradA\Blog\Model;
 use MouradA\Blog\Models\ArticleModel;
+use MouradA\Blog\Requests\Request;
 
 class ArticleController extends Controller
 {
@@ -15,17 +16,17 @@ class ArticleController extends Controller
         $this->articleModel = new ArticleModel($app->getDb());
     }
 
-    public function getIndex($params = [])
+    public function getIndex()
     {
 
     }
 
-    public function getShow($params = [])
+    public function getShow(int $articleId)
     {
-        $data=[];
+        $data= [];
 
 
-        return $this->app->view('articles', $data);
+        return $this->app->view('article_index', $data);
     }
 
     public function deleteDestroy()
@@ -33,12 +34,12 @@ class ArticleController extends Controller
 
     }
 
-    public function postCreate($params = [], $data = [])
+    public function postCreate(Request $request )
     {
 
     }
 
-    public function postUpdate($params = [], $data = [])
+    public function postUpdate(int $articleId , Request $request)
     {
 
     }

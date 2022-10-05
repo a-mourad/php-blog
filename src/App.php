@@ -5,6 +5,7 @@ namespace MouradA\Blog;
 use MouradA\Blog\Database\Database;
 use MouradA\Blog\Helpers\Response;
 use MouradA\Blog\Helpers\RouteParser;
+use MouradA\Blog\Requests\Request;
 
 class App
 {
@@ -19,8 +20,8 @@ class App
     {
 
         try {
-            [$controller, $action,$method,$params] = $this->router->resolveRoute();
-            $response = $this->handleController($controller, $action, $method, $params);
+            [$controller, $action,$params] = $this->router->resolveRoute();
+            $response = $this->handleController($controller, $action,  $params);
 
             echo $response;
         } catch ( \Exception $exception) {
@@ -30,11 +31,12 @@ class App
 
     }
 
-    private function handleController(string $controller, string $action,string $method,$params)
+    private function handleController(string $controller, string $action,$params)
     {
 
         $class = new $controller($this);
-        return $class->$action($params,$_REQUEST);
+
+        return $class->$action(new Request($_REQUEST, $params));
 
     }
 
@@ -47,5 +49,6 @@ class App
     {
         return $this->view->render($viewName, $data);
     }
+
 
 }
