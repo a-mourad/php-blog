@@ -1,0 +1,17 @@
+{
+    "name": "mourad-a/blog",
+    "description": "a simple php blog",
+    "require": {
+        "vlucas/phpdotenv": "^5.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "MouradA\\Blog\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Mourad Afakrouch"
+        }
+    ]
+}
